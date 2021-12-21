@@ -1,2 +1,4 @@
 twitter_authentication.py
 data
+venv
+__pycache__
