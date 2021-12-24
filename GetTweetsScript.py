@@ -28,15 +28,23 @@ data_set_name = 'btc_train'
 
 f= open('./logs/log_' + data_set_name + '.txt', 'a')
 
-date = datetime.datetime(2016,12,31,23,0,0)
+start_str = '2017-01-14'
+end_str =   '2020-01-01'
+
+start = datetime.datetime.strptime(start_str, "%Y-%m-%d")
+end =   datetime.datetime.strptime(end_str, "%Y-%m-%d")
+diff = end-start
+
+diff_list = str(diff).split(' ')
+num_hours = int(diff_list[0]) * 24 + 1
+
+date = start
+
 date_list = []
-for i in range(0, 3 * 365 * 24 + 1):
-    date += datetime.timedelta(hours=1)
+for i in range(0, num_hours):
     date_str = date.strftime("%Y-%m-%dT%H:%M:%SZ")
     date_list.append(date_str)
-
-
-print (date_list)
+    date += datetime.timedelta(hours=1)
 
 start_date = date_list [0]
 end_date = date_list[len(date_list) - 1]
@@ -141,13 +149,13 @@ try:
     except Exception as ex:
         print ("Something went wrong….",ex)
         
-        
-except:
+ 
+except Exception as e:
     
     sent_from = gmail_user
     to = ['spencerd.king@gmail.com', 'sdk81722@uga.edu']
     subject = 'ERROR with Old Tweet Gathering: ' + data_set_name + '!'
-    body = 'Error occured while downloading ' + data_set_name + ' set! Go check it out when you get a chance!'
+    body = 'Error occured while downloading ' + data_set_name + ' set! \n\nError occured: ' + e + '\n\nGo check it out when you get a chance!'
 
     email_text = """\
     From: %s
