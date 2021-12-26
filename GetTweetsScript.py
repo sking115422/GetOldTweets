@@ -26,8 +26,6 @@ if os.path.isdir('logs') == False:
 
 data_set_name = 'btc_train'
 
-f= open('./logs/log_' + data_set_name + '.txt', 'a')
-
 start_str = '2017-01-14'
 end_str =   '2020-01-01'
 
@@ -81,10 +79,6 @@ try:
         
         if count % 24 == 0:
             
-            f= open('./logs/log_' + data_set_name + '.txt', 'a')
-            f.write("output to csv")
-            f.close()
-            
             path = './data/'+ data_set_name + '__' + date_list[j][0:10] + '.csv'
             
             result = []
@@ -118,13 +112,17 @@ try:
                                 'quote_count': tweet.public_metrics['quote_count']
                                 })
 
+            
             # Change this list of dictionaries into a dataframe
             df = pd.DataFrame(result)
             
             df.to_csv(path)
             
-            tweets_list = []
+            f= open('./logs/log_' + data_set_name + '.txt', 'a')
+            f.write("output to csv")
+            f.close()
             
+            tweets_list = []
             
 
     sent_from = gmail_user
