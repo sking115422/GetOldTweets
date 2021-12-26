@@ -155,7 +155,7 @@ except Exception as e:
     sent_from = gmail_user
     to = ['spencerd.king@gmail.com', 'sdk81722@uga.edu']
     subject = 'ERROR with Old Tweet Gathering: ' + data_set_name + '!'
-    body = 'Error occured while downloading ' + data_set_name + ' set! \n\nError occured: ' + e + '\n\nGo check it out when you get a chance!'
+    body = 'Error occured while downloading ' + data_set_name + ' set! \n\nError occured: ' + str(e) + '\n\nGo check it out when you get a chance!'
 
     email_text = """\
     From: %s
