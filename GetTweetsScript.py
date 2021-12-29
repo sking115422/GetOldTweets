@@ -7,6 +7,7 @@ import time
 import pandas as pd
 import os
 import smtplib
+from email.message import EmailMessage
 import ssl
 
 
@@ -132,24 +133,20 @@ try:
             
             tweets_list = []
             
-
-    sent_from = gmail_user
-    to = ['spencerd.king@gmail.com', 'sdk81722@uga.edu']
-    subject = 'Old Tweet Gathering Is Done:' + data_set_name + ' !'
-    body = 'The ' + data_set_name + ' set is downloaded and ready for use! \n\nData set date range: ' + start_date + ' to ' + end_date
-
-    email_text = """\
-    From: %s
-    To: %s
-    Subject: %s
-
-    %s
-    """ % (sent_from, ", ".join(to), subject, body)
+            
+            
+    msg = EmailMessage()
+    msg.set_content('The ' + data_set_name + ' set is downloaded and ready for use! \n\nData set date range: ' + start_date + ' to ' + end_date
+)
+    
+    msg['Subject'] = 'Old Tweet Gathering Is Done:' + data_set_name + ' !'
+    msg['From'] = gmail_user
+    msg['To'] = ['spencerd.king@gmail.com', 'sdk81722@uga.edu']
 
     try:
         smtp_server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         smtp_server.login(gmail_user, gmail_pass)
-        smtp_server.sendmail(sent_from, to, email_text)
+        smtp_server.send_message(msg)
         smtp_server.close()
         print ("Email sent successfully!")
     except Exception as ex:
@@ -158,23 +155,18 @@ try:
  
 except Exception as e:
     
-    sent_from = gmail_user
-    to = ['spencerd.king@gmail.com', 'sdk81722@uga.edu']
-    subject = 'ERROR with Old Tweet Gathering: ' + data_set_name + '!'
-    body = 'Error occured while downloading ' + data_set_name + ' set! \n\nError occured: ' + str(e) + '\n\nGo check it out when you get a chance!'
-
-    email_text = """\
-    From: %s
-    To: %s
-    Subject: %s
-
-    %s
-    """ % (sent_from, ", ".join(to), subject, body)
+    
+    msg = EmailMessage()
+    msg.set_content('Error occured while downloading ' + data_set_name + ' set! \n\nError occured: ' + str(e) + '\n\nGo check it out when you get a chance!')
+    
+    msg['Subject'] = 'ERROR with Old Tweet Gathering: ' + data_set_name + '!'
+    msg['From'] = gmail_user
+    msg['To'] = ['spencerd.king@gmail.com', 'sdk81722@uga.edu']
 
     try:
         smtp_server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         smtp_server.login(gmail_user, gmail_pass)
-        smtp_server.sendmail(sent_from, to, email_text)
+        smtp_server.send_message(msg)
         smtp_server.close()
         print ("Email sent successfully!")
     except Exception as ex:
