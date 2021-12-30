@@ -27,7 +27,7 @@ if os.path.isdir('logs') == False:
 
 data_set_name = 'btc_train'
 
-start_str = '2017-01-14'
+start_str = '2017-06-21'
 end_str =   '2020-01-01'
 
 start = datetime.datetime.strptime(start_str, "%Y-%m-%d")
