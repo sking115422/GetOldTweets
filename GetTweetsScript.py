@@ -27,7 +27,7 @@ if os.path.isdir('logs') == False:
 
 data_set_name = 'btc_train'
 
-start_str = '2017-06-21'
+start_str = '2017-09-13'
 end_str =   '2020-01-01'
 
 start = datetime.datetime.strptime(start_str, "%Y-%m-%d")
@@ -159,7 +159,7 @@ except Exception as e:
     msg = EmailMessage()
     msg.set_content('Error occured while downloading ' + data_set_name + ' set! \n\nError occured: ' + str(e) + '\n\nGo check it out when you get a chance!')
     
-    msg['Subject'] = 'ERROR with Old Tweet Gathering: ' + data_set_name + '!'
+    msg['Subject'] = 'ERROR with Old Tweet Gathering: ' + data_set_name + ' !'
     msg['From'] = gmail_user
     msg['To'] = ['spencerd.king@gmail.com', 'sdk81722@uga.edu']
 
