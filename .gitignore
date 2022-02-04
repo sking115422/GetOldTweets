@@ -1,5 +1,7 @@
 twitter_authentication.py
 data
+data_train
+data2
 logs
 venv
 __pycache__

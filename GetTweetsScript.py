@@ -14,21 +14,21 @@ import ssl
 client = tweepy.Client(bearer_token, wait_on_rate_limit=True)
 
 
-if os.path.isdir('data') == False:
-    os.mkdir('data')
+if os.path.isdir('data2') == False:
+    os.mkdir('data2')
 
 
 if os.path.isdir('logs') == False:
     os.mkdir('logs')
 
 
-### BTC Train Set 2017 to 2020
+### BTC Test Set 2020 to 2021
 
 
-data_set_name = 'btc_train'
+data_set_name = 'btc_test'
 
-start_str = '2018-09-04'
-end_str =   '2020-01-01'
+start_str = '2020-01-01'
+end_str =   '2021-01-01'
 
 start = datetime.datetime.strptime(start_str, "%Y-%m-%d")
 end =   datetime.datetime.strptime(end_str, "%Y-%m-%d")
@@ -80,7 +80,7 @@ try:
         
         if count % 24 == 0:
             
-            path = './data/'+ data_set_name + '__' + date_list[j][0:10] + '.csv'
+            path = './data2/'+ data_set_name + '__' + date_list[j][0:10] + '.csv'
             
             result = []
             user_dict = {}
